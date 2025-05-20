@@ -1,0 +1,474 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000;
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.5;
+    height: 100%;
+}
+
+
+
+
+/* 
+HEADER PRINCIPAL:
+- Usa flexbox para alinear el logo y el título horizontalmente.
+- 'gap' separa los elementos.
+- 'flex-wrap: wrap' permite que el contenido baje si no entra en pantallas chicas.
+- El logo tiene tamaño fijo.
+- El título ocupa el espacio restante con 'flex: 1' y tiene fuente grande.
+*/
+
+
+/* HEADER GENERAL */
+.header {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Distribuye logo y título */
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #6c757d;
+}
+
+/* LOGO: tamaño fijo */
+.header__logo {
+    width: 50px;
+    height: auto;
+    animation: giro 10s linear infinite;
+}
+
+/*ANIMACION DEL LOGO*/
+
+@keyframes giro {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+/* TÍTULO: ocupa espacio y color visible */
+.header__title {
+    font-size: 1.8rem;
+    color: #ffffff;
+    /* Cambié de #333 a blanco para mejor contraste */
+    text-align: center;
+    /* Centra el texto si baja a nueva línea */
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        90deg,
+        #ffffff 25%,
+        #ffc107 50%,
+        #ffffff 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+    -webkit-background-clip: text;  /* LINEA AMARILLA POR QUE ES EXPERIMENTAL */
+    -webkit-text-fill-color: transparent;
+}
+
+/* Para navegadores que no soporten background-clip en texto */
+.header__title::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    color: #fff;
+    z-index: -1;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+
+/* MOBILE: layout vertical */
+@media (max-width: 600px) {
+    .header {
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+    }
+
+    .header__title {
+        font-size: 1.4rem;
+    }
+}
+
+
+/* Ajustes para pantallas pequeñas: el header pasa a vertical */
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .header__title {
+        font-size: 1.4rem;
+    }
+}
+
+
+/* Ajustes para pantallas muy pequeñas: el header pasa a vertical */
+@media (max-width: 360px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header__title {
+        font-size: 1.2rem;
+        margin-top: 10px;
+    }
+
+}
+
+
+/*-----------------------------------------------------------------------------------------*/
+
+
+
+/* 
+-- NAVBAR PRINCIPAL:
+- Usa Flexbox para alinear horizontalmente los enlaces.
+- 'gap' da espacio entre los ítems del menú.
+- 'list-style: none' quita los puntos de la lista.
+*/
+.nav {
+    max-width: 1600px;
+    margin: 0 auto;
+    background-color: #343a40;
+    /* Fondo oscuro */
+    padding: 10px 20px;
+}
+
+.nav__list {
+    display: flex;
+    /* Menú horizontal */
+    justify-content: center;
+    /* Centrado horizontal */
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ENLACES DEL NAV */
+.nav__link {
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    /* Sin subrayado */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav__link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2.5px;
+    left: 50%;
+    background-color: #ffc107;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav__link:hover {
+    color: #ffc107;
+    /* Amarillo al pasar el mouse */
+}
+
+.nav__link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* 
+-- NAVBAR RESPONSIVE:
+- Menú pasa a columna.
+- Texto más grande.
+*/
+/* Para pantallas pequeñas: tablets y móviles */
+@media (max-width: 600px) {
+    .nav__list {
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .nav__link {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+}
+
+/* Para pantallas aún más pequeñas: móviles más pequeños */
+@media (max-width: 460px) {
+    .nav__list {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .nav__link {
+        font-size: 1rem;
+        text-align: center;
+        border-bottom: 2px solid #6c757d;
+        padding: 2px 8px;
+    }
+}
+
+/* Para pantallas muy pequeñas: móviles pequeños */
+@media (max-width: 360px) {
+    .nav__list {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav__link {
+        font-size: 1rem;
+        text-align: center;
+        padding: 2px 12px;
+        border-bottom: 2px solid #6c757d;
+        width: 100%;
+        /* Para que los links ocupen todo el ancho del menú */
+    }
+}
+
+
+
+/*-----------------------------------------------------------------------------------------*/
+
+
+/* Estilos generales del main */
+.main-content {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    flex-grow: 1;
+}
+
+/* Títulos generales */
+.main-content h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #b3afaf;
+    border-bottom: 2px solid #6c757d;
+    padding-bottom: 8px;
+}
+
+/* Espaciado entre secciones */
+.main-content section {
+    margin-bottom: 40px;
+}
+
+/* Servicios */
+.services__description {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Quiénes somos */
+.about-us__description {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Ejemplos - grid responsivo */
+.examples__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.examples__item {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.examples__item-image {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.examples__item-title {
+    margin: 10px 0 6px;
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.examples__item-description {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Contacto */
+.contact__list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.contact__item {
+    margin-bottom: 8px;
+}
+
+/* Términos */
+.terms__description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 600px) {
+    .main-content {
+        padding: 15px 10px;
+    }
+
+    .main-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .examples__list {
+        grid-template-columns: 1fr;
+        /* Una columna en móviles */
+    }
+
+    .examples__item {
+        padding: 12px;
+    }
+
+    .examples__item-title {
+        font-size: 1.1rem;
+    }
+
+    .examples__item-description {
+        font-size: 0.95rem;
+    }
+}
+
+
+
+
+
+/*-----------------------------------------------------------------------------------------*/
+
+
+
+/* ==== FOOTER GENERAL ==== */
+.footer {
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 40px 40px;
+}
+
+.footer__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    max-width: none;
+}
+
+.footer__copy {
+    margin: 0;
+    font-size: 0.9rem;
+    min-width: 200px;
+}
+
+.footer__social {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    min-width: 200px;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.footer__link {
+    position: relative;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer__link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2.5px;
+    left: 50%;
+    background-color: #ffc107;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.footer__link:hover {
+    color: #ffc107;
+}
+
+.footer__link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+@media (max-width: 768px) {
+    .footer__content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer__social {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
