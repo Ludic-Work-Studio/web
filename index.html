@@ -12,6 +12,7 @@
     <!-- LINK DE LOGO-->
     <link rel="icon" href="logo.png" type="image/jpg">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
     <title>Ludic Work Studio</title>
@@ -105,23 +106,7 @@
 
 
 
-    <script>
-        window.addEventListener("load", () => {
-            const preloader = document.getElementById("preloader");
-            preloader.classList.add("fade-out");
-
-            // Esperamos un poco antes de mostrar el contenido
-            setTimeout(() => {
-                preloader.style.display = "none";
-
-                // Mostrar el contenido con animación
-                document.querySelector("main").classList.add("visible");
-                document.querySelector("header").classList.add("visible");
-                document.querySelector("nav").classList.add("visible");
-                document.querySelector("footer").classList.add("visible");
-            }, 500);
-        });
-    </script>
+    <script src="script.js"></script>
 
 </body>
 
