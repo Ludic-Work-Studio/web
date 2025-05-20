@@ -45,3 +45,26 @@ window.addEventListener("load", () => {
         }, "-=0.5");
 });
 
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const link = document.querySelector(".terms__description a");
+    const modal = document.getElementById("modal-condiciones");
+    const closeBtn = modal.querySelector(".modal-terms__close");
+
+    link.addEventListener("click", (e) => {
+        e.preventDefault(); // No navega
+        modal.style.display = "flex";
+    });
+
+    closeBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+});
