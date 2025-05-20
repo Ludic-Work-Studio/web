@@ -102,6 +102,27 @@
     </footer>
 
 
+
+
+
+    <script>
+        window.addEventListener("load", () => {
+            const preloader = document.getElementById("preloader");
+            preloader.classList.add("fade-out");
+
+            // Esperamos un poco antes de mostrar el contenido
+            setTimeout(() => {
+                preloader.style.display = "none";
+
+                // Mostrar el contenido con animación
+                document.querySelector("main").classList.add("visible");
+                document.querySelector("header").classList.add("visible");
+                document.querySelector("nav").classList.add("visible");
+                document.querySelector("footer").classList.add("visible");
+            }, 500);
+        });
+    </script>
+
 </body>
 
 </html>
